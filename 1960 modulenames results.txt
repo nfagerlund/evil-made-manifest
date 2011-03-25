@@ -1,0 +1,9 @@
+* 1_name-fail — loads, but no qualified vars; notice said "-fail::somevar" (fails differently on 0.25.5: notice: Scope(Class[main]): ${1_name-fail::somevar}
+* Namefail — syntax error (fails identically in 0.25.5)
+* _namefail — could not parse for environment production: could not match at line 1 (fails identically in 0.25.5)
+* name-fail — :O haha, notice: Scope(Class[main]): main-fail::somevar. OK, let's try a slightly different version of that one:
+* name-fail (except referenced as ${name-fail::somevar} so it doesn't try and reference $name) — could not parse for environment production: syntax error at 'fail::somevar'; expected ')' at line 3 (fails differently in 0.25.5; see 1_name-fail)
+* name_fail — works (works in 0.25.5)
+* namefail_ — works
+* namefail_- — Loads but no qualified vars; same as 1_name-fail. (fails differently in 0.25.5; see 1_name-fail)
+* nammeFAIL — Works. (also works on 0.25.5.)

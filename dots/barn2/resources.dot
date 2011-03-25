@@ -1,0 +1,102 @@
+digraph Resources {
+    label = "Resources"
+    "Filebucket[puppet]" [
+        fontsize = 8,
+        label = "Filebucket[puppet]"
+    ]
+
+    "Schedule[never]" [
+        fontsize = 8,
+        label = "Schedule[never]"
+    ]
+
+    "Class[Main]" [
+        fontsize = 8,
+        label = "Class[Main]"
+    ]
+
+    "Schedule[puppet]" [
+        fontsize = 8,
+        label = "Schedule[puppet]"
+    ]
+
+    "Schedule[monthly]" [
+        fontsize = 8,
+        label = "Schedule[monthly]"
+    ]
+
+    "Schedule[daily]" [
+        fontsize = 8,
+        label = "Schedule[daily]"
+    ]
+
+    "Exec[/usr/bin/whoami]" [
+        fontsize = 8,
+        label = "Exec[/usr/bin/whoami]"
+    ]
+
+    "Class[Settings]" [
+        fontsize = 8,
+        label = "Class[Settings]"
+    ]
+
+    "Class[Exectesting]" [
+        fontsize = 8,
+        label = "Class[Exectesting]"
+    ]
+
+    "File[/etc/motd]" [
+        fontsize = 8,
+        label = "File[/etc/motd]"
+    ]
+
+    "Schedule[weekly]" [
+        fontsize = 8,
+        label = "Schedule[weekly]"
+    ]
+
+    "Node[barn2.magpie.lan]" [
+        fontsize = 8,
+        label = "Node[barn2.magpie.lan]"
+    ]
+
+    "Schedule[hourly]" [
+        fontsize = 8,
+        label = "Schedule[hourly]"
+    ]
+
+    "Class[Motd]" [
+        fontsize = 8,
+        label = "Class[Motd]"
+    ]
+
+    "Stage[main]" [
+        fontsize = 8,
+        label = "Stage[main]"
+    ]
+
+    "Stage[main]" -> "Class[Main]" [
+        fontsize = 8
+    ]
+
+    "Class[Main]" -> "Node[barn2.magpie.lan]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Exectesting]" [
+        fontsize = 8
+    ]
+
+    "Class[Exectesting]" -> "Exec[/usr/bin/whoami]" [
+        fontsize = 8
+    ]
+
+    "Stage[main]" -> "Class[Motd]" [
+        fontsize = 8
+    ]
+
+    "Class[Motd]" -> "File[/etc/motd]" [
+        fontsize = 8
+    ]
+
+}
