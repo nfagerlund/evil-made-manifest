@@ -1,0 +1,3 @@
+notify {'test':}
+notify {'test':}
+
