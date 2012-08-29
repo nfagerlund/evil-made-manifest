@@ -2,15 +2,18 @@
 
 class bar {
     notice("This is coming from class ::bar.")
+    $somevar = "set in ::bar"
 }
 
+    class foo::bar {
+      notice("Coming from class foo::bar.")
+      $somevar = "set in foo::bar"
+    }
 
 class foo {
-    class bar {
-      notice("Coming from class foo::bar.")
-    }
     include bar
+    notice($bar::somevar)
 }
 
-include foo::bar
+include foo
 # This will yield the "foo::bar" notice, not the bar one. 
