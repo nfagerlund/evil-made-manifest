@@ -8,6 +8,10 @@
 # Undef apparently doesn't do anything. OR NO WAIT, it does, but only if you explicitly set an attribute to undef. 
 # Uh whoa, != always matches if the value of the attribute is an array. 
 # Collectors in functions is a no-go. 
+
+# How about variables? Can you use a variable to do collection? 
+# YES, you can. 
+
 @notify {'one tag':
   tag => 'one',
 }
@@ -26,3 +30,6 @@
 #Notify <| noop == undef |>
 
 # defined (Notify <| tag != ['one', 'two'] |>)
+
+$allowed = 'two'
+Notify <| tag == $allowed |>
