@@ -58,3 +58,6 @@ Slightly different:
 
 ### ^%&()!!--!
 
+Multiple spaces:
+
+### This     had five spaces
