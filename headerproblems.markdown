@@ -125,3 +125,7 @@ An nbsp:
 A literal tab:
 
 ### This has	a literal hard tab
+
+in html:
+
+<h3>This has	a literal hard tab</h3>
