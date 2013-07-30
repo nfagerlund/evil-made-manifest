@@ -93,3 +93,7 @@ Leading spaces in markdown:
 Leading spaces in HTML:
 
 <h3>      This had six spaces in the front.</h3>
+
+Trailing spaces in HTML:
+
+<h3>This had four spaces at the end:    </h3>
