@@ -10,6 +10,7 @@ Observed behaviors:
 - All uppercase alphabetic ASCII chars are downcased.
     - Non-ascii alphabetic characters (inc. Cyrillic, accented Latin, and I don't know what else) will count as alphabetic characters (i.e. they won't be deleted or replaced with hyphens), but they will NOT be downcased -- things like Ñ and Á will remain as literals in the final ID.
         - Wondering what the criteria they're using for identifying alphabetic chars is; is it based on Unicode definitions?
+        - This appears to match the behavior of Ruby's String#downcase method.
 - All spaces are replaced with hyphens
     - Including multiple spaces in a row! They are not collapsed.
     - Hard tab characters (ascii 9) are replaced with FOUR hyphens (`----`). The markdown processor github is using passes hard tabs through unmolested, so they act the same as in embedded html fragments.
@@ -19,6 +20,7 @@ Observed behaviors:
 - All remaining non-alphanumeric chars are deleted (inc. periods)
     - HTML entities (`&amp;`) are treated as though they were the character they represent.
     - Things like `&nbsp;` are considered non-alphanumeric and non-space, and get deleted.
+    - Again, it's detecting non-ASCII alphabetic characters and leaving them alone. It seems likely that they're using regex Unicode "character properties" (http://www.ruby-doc.org/core-1.9.3/Regexp.html#label-Character+Properties), which are not available in Ruby 1.8.7 but are available in Ruby 1.9+ and several other regex engines -- if you did something like .gsub(/[^\p{L}_-]/, ''), it'd kill all non-alphabetic non-underscore non-hyphen characters.
 - Duplicate headers are given a suffix of `-\d+`, i.e. a hyphen and one or more numbers.
     - The count starts with 1 on the second instance of the duplicate header; that is, the first instance has an implicit number of 0, though it isn't appended.
     - Duplication seems to be tested AFTER any other transformations: if removal of non-alphanumeric chars etc. would reduce two different strings to identical IDs, they are considered identical.
