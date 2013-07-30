@@ -15,8 +15,9 @@ Observed behaviors:
     - Leading and trailing spaces can be (and usually are) stripped by a given markup language's rendering library. If there are any spaces ANYWHERE in the resulting HTML, they are treated as normal spaces. This means trailing spaces in a literal `<h3>` will become hyphens.
 - All hyphens are left alone
 - All underscores are left alone
-- All remaining non-alphabetic non-numeric chars are deleted (inc. periods)
+- All remaining non-alphanumeric chars are deleted (inc. periods)
     - HTML entities (`&amp;`) are treated as though they were the character they represent.
+    - Things like `&nbsp;` are considered non-alphanumeric and non-space, and get deleted.
 - Duplicate headers are given a suffix of `-\d+`, i.e. a hyphen and one or more numbers.
     - The count starts with 1 on the second instance of the duplicate header; that is, the first instance has an implicit number of 0, though it isn't appended.
     - Duplication seems to be tested AFTER any other transformations: if removal of non-alphanumeric chars etc. would reduce two different strings to identical IDs, they are considered identical.
@@ -120,3 +121,7 @@ Cyrillic:
 An nbsp:
 
 ### This has&nbsp;an nbsp
+
+A literal tab:
+
+### This has	a literal hard tab
