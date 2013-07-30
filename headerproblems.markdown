@@ -12,6 +12,7 @@ Observed behaviors:
         - Wondering what the criteria they're using for identifying alphabetic chars is; is it based on Unicode definitions?
 - All spaces are replaced with hyphens
     - Including multiple spaces in a row! They are not collapsed.
+    - Hard tab characters (ascii 9) are replaced with FOUR hyphens (`----`). The markdown processor github is using passes hard tabs through unmolested, so they act the same as in embedded html fragments.
     - Leading and trailing spaces can be (and usually are) stripped by a given markup language's rendering library. If there are any spaces ANYWHERE in the resulting HTML, they are treated as normal spaces. This means trailing spaces in a literal `<h3>` will become hyphens.
 - All hyphens are left alone
 - All underscores are left alone
