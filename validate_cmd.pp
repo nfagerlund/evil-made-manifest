@@ -14,3 +14,10 @@ file {'/tmp/source':
   validate_cmd => 'false',
   require => File['/tmp/content'],
 }
+
+# How about for a directory? ...it silently succeeds. :\
+
+file {'/tmp/mydir':
+  ensure => directory,
+  validate_cmd => 'false',
+}
