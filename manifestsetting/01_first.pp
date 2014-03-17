@@ -4,3 +4,5 @@
 
 notice('this one went first')
 notify {'first file':}
+
+$earliervar = "This is from the first file."
