@@ -2,3 +2,4 @@
 notice('this has a double \\ backslash')
 notice("this has a double \\ backslash")
 notice('this ends with a backslash\\')
+notice('this ends with a single quote\'')
