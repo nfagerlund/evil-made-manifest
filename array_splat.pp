@@ -39,3 +39,22 @@ case $trusted['certname'] {
   *$non_matching: { notify {"Matched the non-matching list for some reason??":} }
   *$nodelist:     { notify {"matched as expected":} }
 }
+
+# How about splatting a scalar?
+
+notify {'something weird':
+#   message => spew(*5),
+  message => "${*undef}",
+#   message => "${*5}",
+#   message => spew(*undef),
+}
+# Just results in the original value if it's in a comma-able context. If not in a comma-able context, it wraps the value in an array first. So, apparently it arrayifies it and THEN splats it.
+
+# How about splatting a hash?
+
+$myhsh = {'a' => 5, 'b' => 7}
+
+notify {'something even weirder':
+  message => "${*$myhsh}",
+}
+#... defined 'message' as '[[a, 5], [b, 7]]' ... I don't know what to make of that.
