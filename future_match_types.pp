@@ -9,3 +9,9 @@ notice("Is File Resource File? ${File['foo'] =~ Resource[File]}") # No. Same as 
 notice("Is File Type Resource? ${File['foo'] =~ Type[Resource]}") # Yes.
 notice("Is File foo Type File foo? ${File['foo'] =~ Type[File[foo]]}") # yes, with or without quotes. Looks like it handles the munging.
 notice("Is File foo Type File bar? ${File['foo'] =~ Type[File[bar]]}") # No, as expected.
+# notice("Is an actual resource declaration Type File? ${ (file {'/tmp/foo': ensure => absent,}) =~ Type[File] }") # ...no????
+
+# $myfile = file {'/tmp/foo': ensure => absent,}
+# notice(spew($myfile[0])) # well wtf is it then??? IT'S AN ARRAY OF RESOURCE REFERENCES????
+
+notice("Is the first member of the value of an actual resource declaration Type File? ${ (file {'/tmp/foo': ensure => absent,})[0] =~ Type[File] }") # ...Yes.
