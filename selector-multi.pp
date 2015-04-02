@@ -11,6 +11,7 @@
 # fourth test: can you use a function call as a value? YES
 # fifth test: can you use an arbitrary expression as a value? YES, in future parser.
 # eighth test: can you nest a selector? HOLY SHIT, YES
+# twelfth test: hash literals okay now? YES.
 
 # Locations
 # sixth test: can you use a selector directly in a function call? YES
@@ -25,7 +26,9 @@ $output = file('/Users/nick/Documents/manifests/myfile.txt') ? {
     #(20+20): {notice('expression fourty')}
     $varcase => 'it is itself, yay',
     #$myvar ? { 30 => 'nothing', 80 => '40', } => 'pre-nested fourty, wow',
-    '40' => 50 + 50,
+    # '40' => 50 + 50,
+    '40' => { 'a' => "first"},
+
     default => 'lawl!',
   }
 notice($output)
