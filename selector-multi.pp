@@ -9,7 +9,7 @@
 
 # Values
 # fourth test: can you use a function call as a value? YES
-# fifth test: can you use an arbitrary expression as a value? NO
+# fifth test: can you use an arbitrary expression as a value? YES, in future parser.
 # eighth test: can you nest a selector? HOLY SHIT, YES
 
 # Locations
@@ -25,7 +25,7 @@ $output = file('/Users/nick/Documents/manifests/myfile.txt') ? {
     #(20+20): {notice('expression fourty')}
     $varcase => 'it is itself, yay',
     #$myvar ? { 30 => 'nothing', 80 => '40', } => 'pre-nested fourty, wow',
-    '40' => '100',
+    '40' => 50 + 50,
     default => 'lawl!',
   }
 notice($output)
