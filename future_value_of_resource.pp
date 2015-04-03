@@ -44,10 +44,26 @@ $super_nested_array = [
     ],
   ],
   [
-    [[Notify[c]]]
+    [[Notify[c]]], []
   ]
 ]
 
 $multi_declare -> $super_nested_array -> $array_title
 
-# Yeah, no, fucked-up as it looks, that works just fine. So that's gonna take a revision of the relationships page.
+# Yeah, no, fucked-up as it looks, that works just fine. It can even include empty arrays. So that's gonna take a revision of the relationships page.
+
+# On the other hand, can't do this:
+
+# $super_nested_array = [
+#   [
+#     [Notify[a]], [
+#       [Notify[b]]
+#     ],
+#   ],
+#   [
+#     [[Notify[c]]], "arbitrary string", 1234, {}
+#   ]
+# ]
+
+# Error: Evaluation Error: Error while evaluating a '->' expression, The expression <arbitrary string> is not a valid type specification.
+
