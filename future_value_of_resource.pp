@@ -95,3 +95,15 @@ $one_reference = Notify[first]
 # }
 
 # Nope, that's vetoed too.
+
+# Can I splat in hash values into a reference attribute block?
+
+$myattrs = {"message" => "from a reference attribute block"}
+
+# Notify[first] { *=> $myattrs }
+notify {'extra': *=> $myattrs }
+# Notify <| title == 'first' |> { *=> $myattrs }
+
+# Nope, absolutely not. Haha WHOA that last one: Error: Could not parse for environment production: In Puppet::Pops::Model::CollectExpression : Can not use a Puppet::Pops::Model::AttributesOperation where a Puppet::Pops::Model::AttributeOperation is expected on node magpie.lan
+# Spot the plural!
+
