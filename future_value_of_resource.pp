@@ -86,4 +86,12 @@ $multi_reference = Notify[first, second, third]
 
 notice(spew($multi_reference))
 
-# Yes.
+# Yes. OK, how about a single reference?
+
+$one_reference = Notify[first]
+
+# $multi_reference {
+#   message => "From a reference attribute block",
+# }
+
+# Nope, that's vetoed too.
