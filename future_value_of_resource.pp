@@ -67,3 +67,23 @@ $multi_declare -> $super_nested_array -> $array_title
 
 # Error: Evaluation Error: Error while evaluating a '->' expression, The expression <arbitrary string> is not a valid type specification.
 
+# Hey, can reference attribute blocks take nested arrays?
+  # NO THEY CAN'T. Or arrays at all. Or arrays in variables.
+
+# [Notify[first], Notify[second]] {
+#   message => "From a reference attribute block",
+# }
+
+# How about, can I store a multi-resource reference in a variable and use that?
+
+$multi_reference = Notify[first, second, third]
+#
+# $multi_reference {
+#   message => "From a reference attribute block",
+# }
+
+# Nope. I think it's because a multi-reference has a value of an array of resource references:
+
+notice(spew($multi_reference))
+
+# Yes.
