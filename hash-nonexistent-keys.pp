@@ -27,3 +27,20 @@ if(undef==''){
   }else{
   notice "undef != ''"
   }
+
+$myary = ["foo", "bar"]
+
+if($myary[2]==""){
+  notice "Nonexistent array member == ''"
+  }else{
+  notice "Nonexistent array member != ''"
+  }
+
+if($myary[-3]==undef){
+  notice "Nonexistent array member == undef"
+  }else{
+  notice "Nonexistent array member != undef"
+  }
+
+notice(spew_too($myary[-3]))
+notice(spew_too(undef,undef, $myary))
