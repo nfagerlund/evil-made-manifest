@@ -44,3 +44,4 @@ if($myary[-3]==undef){
 
 notice(spew_too($myary[-3]))
 notice(spew_too(undef,undef, $myary))
+notice("${undef}")
