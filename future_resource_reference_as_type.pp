@@ -48,7 +48,8 @@ File { "/tmp/testfile2":
 # Except THIS works, in both variations:
 
 # $mytypename = file
-$mytypename = File
+# $mytypename = File
+$mytypename = "file"
 
 Resource[$mytypename] { "/tmp/testfile6":
   ensure => file,
@@ -70,3 +71,19 @@ Resource[$mytypename] { "/tmp/testfile6":
   # The name of the resource type, lowercased, as a bare word that functions as a keyword rather than a string. (
   # A literal of a Type, which specifically must be a subtype of Resource, and which also specifically must NOT have a title.
 
+# How about resource defaults using strings instead of types?
+
+# notify {
+#   message => "default message",
+# }
+# This is illegal, and results in:
+# Error: This Block Expression has no effect. A value-producing expression without other effect may only be placed last in a block/sequence at /Users/nick/Documents/manifests/future_resource_reference_as_type.pp:76:1
+# Error: This Name has no effect. A value-producing expression without other effect may only be placed last in a block/sequence at /Users/nick/Documents/manifests/future_resource_reference_as_type.pp:76:1
+
+$mydefaultstype = notify
+Resource[$mydefaultstype] {
+  message => "default message",
+}
+# That, on the other hand, works fine. So, the type of a resource defaults statement has to be a type, not a string.
+
+notify {'mynotify':}
