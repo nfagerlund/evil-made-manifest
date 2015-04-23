@@ -3,5 +3,5 @@
 
 exec {"/opt/local/bin/cowsay 'She only comes out at night / The lean and hungry type'":
   logoutput => true,
-  loglevel  => debug,
+  # loglevel  => debug,
 }
