@@ -1,6 +1,6 @@
 # Is the == operator case-sensitive? NO
-notice( 'eat' == 'EAt' )
+notice( 'eat' == 'EAt' ) # true
 
-# Is the 'in' operator case-sensitive? YES
-notice( 'eat' in 'EAten' )
+# Is the 'in' operator case-sensitive? NO
+notice( 'eat' in 'EAten' ) # true
 
