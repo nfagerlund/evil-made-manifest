@@ -74,6 +74,11 @@ $multi_declare -> $super_nested_array -> $array_title
 #   message => "From a reference attribute block",
 # }
 
+# Multi-references still work, right?
+Notify[first, second] {
+  message => "From a reference attribute block",
+}
+
 # How about, can I store a multi-resource reference in a variable and use that?
 
 $multi_reference = Notify[first, second, third]
