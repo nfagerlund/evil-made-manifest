@@ -89,6 +89,16 @@ END INTERP
 
 # Identical results with 3.7.5 and 4.0.0.
 # That is 100% a bug. Filed PUP-4462.
+# Fixed in commit f5974e2863cd857625634959ce09deb0344fcfc4, after which we see this instead:
+# Notice: Scope(Class[main]): This string should be able to interpolate variables, and all backslashes should
+# be interpreted as plain old literal backslashes.
+# Variable standing apart: hi there
+# Variable enjambed: heyhi there
+# Variable with single backslash enjambed: \hi there
+# Variable with double backslash enjambed: \\hi there
+#
+# ...which is what I originally expected to see.
+
 
 notice(@("END INTERP"/$))
 This string should be able to interpolate variables, and all backslashes should
