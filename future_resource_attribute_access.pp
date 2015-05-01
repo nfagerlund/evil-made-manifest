@@ -30,6 +30,10 @@ notice( spew( File["/tmp/accessed_file.txt"]["mode"] ))
 # Notice: Scope(Class[main]): [nil]
 # [NilClass]
 
+# Reminder that nil is undef:
+notice( undef == File["/tmp/accessed_file.txt"]["mode"] )
+# Notice: Scope(Class[main]): true
+
 # How about values that default to something?
 notice( spew( File["/tmp/accessed_file.txt"]["path"] ))
 # Notice: Scope(Class[main]): [nil]
