@@ -41,3 +41,11 @@ notice( spew( File["/tmp/accessed_file.txt"]["path"] ))
 
 # Interesting. So it has to be in the actual original expression, even if you could derive it without looking at the target system.
 
+# How about attributes that don't exist?
+# notice( spew( File["/tmp/accessed_file.txt"]["bogus_attribute"] ))
+# Error: Evaluation Error: The resource File['/tmp/accessed_file.txt'] does not have a parameter called 'bogus_attribute' at /Users/nick/Documents/manifests/future_resource_attribute_access.pp:45:15 on node magpie.lan
+
+# or with illegal names?
+# notice( spew( File["/tmp/accessed_file.txt"]["I have spaces and Capital Letters!"] ))
+# same:
+# Error: Evaluation Error: The resource File['/tmp/accessed_file.txt'] does not have a parameter called 'I have spaces and Capital Letters!' at /Users/nick/Documents/manifests/future_resource_attribute_access.pp:49:15 on node magpie.lan
