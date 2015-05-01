@@ -112,3 +112,5 @@ notify {'extra': *=> $myattrs }
 # Nope, absolutely not. Haha WHOA that last one: Error: Could not parse for environment production: In Puppet::Pops::Model::CollectExpression : Can not use a Puppet::Pops::Model::AttributesOperation where a Puppet::Pops::Model::AttributeOperation is expected on node magpie.lan
 # Spot the plural!
 
+# This is actually meant to work. https://tickets.puppetlabs.com/browse/PUP-4374 fixed in 3.8.1 and 4.1.0.
+

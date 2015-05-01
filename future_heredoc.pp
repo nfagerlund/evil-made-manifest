@@ -140,4 +140,45 @@ include heya
 notice("Var sup$heya::thing/hi is here")
 # Notice: Scope(Class[main]): Var supfrom heya/hi is here
 # nope it's fine.
+notice("Var sup$heya::thing-hi is here")
+# Notice: Scope(Class[main]): Var supfrom heya-hi is here
+notice("Var sup$heya::thinghi is here")
+notice("Var sup$heya::thingHi is here")
+notice("Var sup$heya::thing0Hi is here")
+# all three do:
+# Notice: Scope(Class[main]): Var sup is here
+# So the variable name has to butt up against some character that would be illegal in a variable name.
 
+
+notice(@(no escape))
+Here's an unrecognized escape sequence: \a \t \s okay cool
+-no escape
+# '
+# Prints them all, doesn't log a warning. If I turn on all escapes, it still doesn't log a warning for \a.
+
+notice(@(backslashing/n))
+  Single: \ Double: \\ Triple: \\\ Quad: \\\\ Quintuple: \\\\\ Sextuple: \\\\\\
+  | -backslashing
+# Notice: Scope(Class[main]): Single: \ Double: \ Triple: \\ Quad: \\ Quintuple: \\\ Sextuple: \\\
+
+
+# How about indented end tag without the scrub pipe?
+notice(@(indented))
+    Four spaces
+  two spaces
+  two again
+  indented
+# Notice: Scope(Class[main]):     Four spaces
+#   two spaces
+#   two again
+#
+# ...So, it works but does nothing.
+
+# Case matters in tags?
+# notice(@(indented))
+#     Four spaces
+#   two spaces
+#   two again
+#   INDENTED
+# Yes: Error: Could not parse for environment production: Heredoc without end-tagged line in file /Users/nick/Documents/manifests/future_heredoc.pp at line 179:1 on node magpie.lan
+# That line number is the first line of the string, so the line after the start tag.
