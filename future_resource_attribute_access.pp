@@ -49,3 +49,61 @@ notice( spew( File["/tmp/accessed_file.txt"]["path"] ))
 # notice( spew( File["/tmp/accessed_file.txt"]["I have spaces and Capital Letters!"] ))
 # same:
 # Error: Evaluation Error: The resource File['/tmp/accessed_file.txt'] does not have a parameter called 'I have spaces and Capital Letters!' at /Users/nick/Documents/manifests/future_resource_attribute_access.pp:49:15 on node magpie.lan
+
+# ------------------------------
+
+# Before a resource default statement
+notice( spew( File["/tmp/accessed_file.txt"][owner] ))
+# Notice: Scope(Class[main]): [nil]
+# [NilClass]
+
+File { owner => 'nick' }
+
+# After a resource default statement
+notice( spew( File["/tmp/accessed_file.txt"][owner] ))
+# Notice: Scope(Class[main]): ["nick"]
+# [String]
+# So defaults apply, but they're also evaluation order dependent.
+
+# ------------------------------
+
+File <| title == "/tmp/accessed_file.txt" |> { group => staff }
+
+# After a collector override
+notice( spew( File["/tmp/accessed_file.txt"][group] ))
+# Notice: Scope(Class[main]): [nil]
+# [NilClass]
+# Per the spec, overrides apply late.
+
+# -------------------------------
+
+notice( spew( File["/tmp/accessed_file.txt"][replace] ))
+# Notice: Scope(Class[main]): [nil]
+# [NilClass]
+
+File["/tmp/accessed_file.txt"] { replace => false }
+
+notice( spew( File["/tmp/accessed_file.txt"][replace] ))
+# Notice: Scope(Class[main]): [false]
+# [FalseClass]
+
+# So amendments AREN'T processed late.
+
+# -------------------------------
+
+define mytype ($one = "default value", $two) {
+  notify {"$one and $two":}
+}
+
+mytype { "thing":
+  two => "uheatnsuh",
+}
+
+notice( spew( Mytype["thing"][one] ))
+# Notice: Scope(Class[main]): [nil]
+# [NilClass]
+
+notice( spew( Mytype["thing"][two] ))
+# Notice: Scope(Class[main]): ["uheatnsuh"]
+# [String]
+
