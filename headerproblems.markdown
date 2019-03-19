@@ -132,3 +132,7 @@ A literal tab:
 in html:
 
 <h3>This has	a literal hard tab</h3>
+
+## Ends with a paren)
+
+## Ends with a colon:
