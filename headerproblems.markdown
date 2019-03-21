@@ -52,6 +52,8 @@ Same with extra non-alphanums in middle:
 
 ### Non-Alphanums & with & spaces between
 
+### `_Leading_underscore in code span`
+
 No alphabetic chars:
 
 ### 1234999
