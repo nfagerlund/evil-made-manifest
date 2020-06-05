@@ -1,5 +1,13 @@
 This document is so I can reverse-engineer github's header ID munging, which doesn't appear to be documented anywhere. It appears to happen as a post-processing step to the rendered HTML, since they use many different tools to render the various lightweight markups and the anchors have a consistency that should be impossible if you're relying on the upstream tools.
 
+also,
+testing
+linebreak
+thingy
+
+- [ ] and tickylists
+- [x] yeah
+
 Observed behaviors:
 -----
 
